@@ -10,4 +10,5 @@ import java.util.List;
 public interface CustomerMapper {
     CustomerDto customerEntityToDto(Customer customer);
     List<CustomerDto> customersEntitiesToDto(List<Customer> customers);
+    Customer dtoToEntity(CustomerDto customerDto);
 }

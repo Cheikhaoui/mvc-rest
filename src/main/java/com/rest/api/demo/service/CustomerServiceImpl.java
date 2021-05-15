@@ -1,5 +1,6 @@
 package com.rest.api.demo.service;
 
+import com.rest.api.demo.domain.Customer;
 import com.rest.api.demo.model.CustomerDto;
 import com.rest.api.demo.model.mapper.CustomerMapper;
 import com.rest.api.demo.repository.CustomerRepository;
@@ -31,5 +32,27 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDto getCustomerById(Long id) {
         return customerMapper.customerEntityToDto(customerRepository.getCustomerById(id));
+    }
+
+    @Override
+    public CustomerDto saveOrUpdateCustomer(CustomerDto customer) {
+        return customerMapper.customerEntityToDto(customerRepository.save(customerMapper.dtoToEntity(customer)));
+    }
+
+    @Override
+    public CustomerDto patchCustomer(CustomerDto customerDto) {
+        CustomerDto customerDto1 = customerMapper.customerEntityToDto(customerRepository.findById(customerDto.getId()).get());
+        if(customerDto.getFirstName() != null){
+            customerDto1.setFirstName(customerDto.getFirstName());
+        }
+        if(customerDto.getLastName() != null){
+            customerDto1.setLastName(customerDto.getLastName());
+        }
+        return saveOrUpdateCustomer(customerDto1);
+    }
+
+    @Override
+    public void deleteCustomer(CustomerDto customerDto) {
+         customerRepository.delete(customerMapper.dtoToEntity(customerDto));
     }
 }

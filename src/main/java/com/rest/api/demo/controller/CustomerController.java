@@ -6,9 +6,7 @@ import com.rest.api.demo.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,4 +41,29 @@ public class CustomerController {
         );
     }
 
+    @PostMapping(value = "/save")
+    public ResponseEntity<CustomerDto> saveCustomer(@RequestBody CustomerDto customerDto){
+       return new ResponseEntity<>(
+               customerService.saveOrUpdateCustomer(customerDto),HttpStatus.CREATED
+       );
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerDto customerDto){
+        return new ResponseEntity<>(
+                customerService.saveOrUpdateCustomer(customerDto),HttpStatus.OK
+        );
+    }
+
+    @PatchMapping("/update")
+    public ResponseEntity<CustomerDto> patchCustomer(@RequestBody CustomerDto customerDto){
+        return new ResponseEntity<>(
+                customerService.patchCustomer(customerDto),HttpStatus.OK
+        );
+    }
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteCustomer(@RequestBody CustomerDto customerDto){
+                customerService.deleteCustomer(customerDto);
+                return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
