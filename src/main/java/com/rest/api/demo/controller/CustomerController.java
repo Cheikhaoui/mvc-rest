@@ -4,11 +4,13 @@ package com.rest.api.demo.controller;
 import com.rest.api.demo.model.CustomerDto;
 import com.rest.api.demo.service.CustomerService;
 import com.rest.api.demo.service.RessourceNotFoundException;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(value = "this is Customer WebService yeaaah")
 @RestController
 @RequestMapping(path = "/customers")
 public class CustomerController {

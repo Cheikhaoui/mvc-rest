@@ -1,5 +1,6 @@
 package com.rest.api.demo.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerDto {
     private Long id;
+    @ApiModelProperty(required = true,value = "name of customer")
     private String firstName;
     private String lastName;
 }
