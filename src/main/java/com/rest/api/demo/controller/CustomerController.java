@@ -3,6 +3,7 @@ package com.rest.api.demo.controller;
 
 import com.rest.api.demo.model.CustomerDto;
 import com.rest.api.demo.service.CustomerService;
+import com.rest.api.demo.service.RessourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,9 +30,16 @@ public class CustomerController {
 
     @GetMapping(value = "/id/{id}")
     public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id){
-        return new ResponseEntity<>(
-                customerService.getCustomerById(id),HttpStatus.OK
-        );
+        CustomerDto customerDto = customerService.getCustomerById(id);
+        if(customerDto == null){
+            throw new RessourceNotFoundException("I can't found a Customer with the id " +
+                    id);
+        }
+        else {
+            return new ResponseEntity<>(
+                    customerDto, HttpStatus.OK
+            );
+        }
     }
 
     @GetMapping(value = "/lastName/{lastName}")

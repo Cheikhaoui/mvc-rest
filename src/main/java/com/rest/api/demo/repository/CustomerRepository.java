@@ -7,4 +7,5 @@ public interface CustomerRepository extends JpaRepository<Customer,Long> {
     Customer getCustomerByFirstName(String firstName);
     Customer getCustomerByLastName(String lastName);
     Customer getCustomerById(Long id);
+
 }

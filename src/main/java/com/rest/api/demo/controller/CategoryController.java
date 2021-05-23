@@ -1,7 +1,9 @@
 package com.rest.api.demo.controller;
 
+import com.rest.api.demo.domain.Category;
 import com.rest.api.demo.model.CategoryDto;
 import com.rest.api.demo.service.CategoryService;
+import com.rest.api.demo.service.RessourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,14 @@ public class CategoryController {
 
     @GetMapping(value = "/{name}")
     public ResponseEntity<CategoryDto> getCategoryByName(@PathVariable String name){
-        return new ResponseEntity<>(
-                categoryService.getCAtegoryByName(name), HttpStatus.OK);
+        CategoryDto category = categoryService.getCAtegoryByName(name);
+        if(category == null){
+            throw new RessourceNotFoundException("I can't found a category with the name" +
+                    name);
+        }
+        else {
+            return new ResponseEntity<>(
+                    categoryService.getCAtegoryByName(name), HttpStatus.OK);
+        }
     }
 }
