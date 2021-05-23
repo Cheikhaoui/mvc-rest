@@ -5,13 +5,11 @@ import com.rest.api.demo.model.CustomerDto;
 import com.rest.api.demo.service.CustomerService;
 import com.rest.api.demo.service.RessourceNotFoundException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(path = "/customers")
 public class CustomerController {
 
@@ -22,56 +20,52 @@ public class CustomerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerDto>> getAllCustomers(){
-        return new ResponseEntity<>(
-                customerService.getAllCustomers(), HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public List<CustomerDto> getAllCustomers(){
+        return customerService.getAllCustomers();
     }
 
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id){
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto getCustomerById(@PathVariable Long id){
         CustomerDto customerDto = customerService.getCustomerById(id);
         if(customerDto == null){
             throw new RessourceNotFoundException("I can't found a Customer with the id " +
                     id);
         }
         else {
-            return new ResponseEntity<>(
-                    customerDto, HttpStatus.OK
-            );
+            return customerDto;
         }
     }
 
     @GetMapping(value = "/lastName/{lastName}")
-    public ResponseEntity<CustomerDto> getCustomerById(@PathVariable String lastName){
-        return new ResponseEntity<>(
-                customerService.getCustomerByLastName(lastName),HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto getCustomerById(@PathVariable String lastName){
+        return
+                customerService.getCustomerByLastName(lastName);
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<CustomerDto> saveCustomer(@RequestBody CustomerDto customerDto){
-       return new ResponseEntity<>(
-               customerService.saveOrUpdateCustomer(customerDto),HttpStatus.CREATED
-       );
+    @ResponseStatus(HttpStatus.CREATED)
+    public CustomerDto saveCustomer(@RequestBody CustomerDto customerDto){
+       return customerService.saveOrUpdateCustomer(customerDto);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<CustomerDto> updateCustomer(@RequestBody CustomerDto customerDto){
-        return new ResponseEntity<>(
-                customerService.saveOrUpdateCustomer(customerDto),HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto){
+        return customerService.saveOrUpdateCustomer(customerDto);
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<CustomerDto> patchCustomer(@RequestBody CustomerDto customerDto){
-        return new ResponseEntity<>(
-                customerService.patchCustomer(customerDto),HttpStatus.OK
-        );
+    @ResponseStatus(HttpStatus.OK)
+    public CustomerDto patchCustomer(@RequestBody CustomerDto customerDto){
+        return customerService.patchCustomer(customerDto);
     }
+
     @DeleteMapping("/delete")
-    public ResponseEntity<Void> deleteCustomer(@RequestBody CustomerDto customerDto){
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCustomer(@RequestBody CustomerDto customerDto){
                 customerService.deleteCustomer(customerDto);
-                return new ResponseEntity<>(HttpStatus.OK);
     }
 }
