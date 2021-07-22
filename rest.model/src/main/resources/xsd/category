@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Categories"  type="Categories"/>
+    <xs:complexType name="Category">
+            <xs:sequence>
+                        <xs:sequence>
+                            <xs:element name="id" type="xs:unsignedByte" />
+                            <xs:element name="name" type="xs:string" />
+                        </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name = "Categories">
+            <xs:sequence>
+                <xs:element type="Category"  name="categories" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+</xs:schema>
