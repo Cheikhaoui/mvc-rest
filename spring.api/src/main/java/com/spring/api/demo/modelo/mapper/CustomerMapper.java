@@ -1,7 +1,8 @@
-package com.spring.api.demo.model.mapper;
+package com.spring.api.demo.modelo.mapper;
 
-import com.spring.api.demo.domain.Customer;
-import com.spring.api.demo.model.CustomerDto;
+
+import com.spring.api.demo.modelo.CustomerDto;
+import com.spring.api.demo.domaino.Customer;
 import org.mapstruct.Mapper;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.spring.api.demo.service;
 
-import com.spring.api.demo.model.CustomerDto;
+import com.spring.api.demo.modelo.CustomerDto;
 
 import java.util.List;
 

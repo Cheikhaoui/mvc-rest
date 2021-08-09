@@ -1,7 +1,7 @@
 package com.spring.api.demo.bootstrap;
 
-import com.spring.api.demo.domain.Category;
-import com.spring.api.demo.domain.Customer;
+import com.spring.api.demo.domaino.Category;
+import com.spring.api.demo.domaino.Customer;
 import com.spring.api.demo.repository.CategoryRepository;
 import com.spring.api.demo.repository.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;

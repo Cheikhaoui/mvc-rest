@@ -1,4 +1,4 @@
-package com.spring.api.demo.model;
+package com.spring.api.demo.modelo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

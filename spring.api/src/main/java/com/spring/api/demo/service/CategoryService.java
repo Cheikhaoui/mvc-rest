@@ -1,7 +1,7 @@
 package com.spring.api.demo.service;
 
 
-import rest.model.Category;
+import com.spring.api.demo.modele.Category;
 
 import java.util.List;
 

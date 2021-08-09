@@ -1,9 +1,9 @@
 package com.spring.api.demo.service;
 
-import com.spring.api.demo.model.mapper.CategoryEntityToDto;
+import com.spring.api.demo.modelo.mapper.CategoryEntityToDto;
+import com.spring.api.demo.modele.Category;
 import com.spring.api.demo.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
-import rest.model.Category;
 
 import java.util.List;
 

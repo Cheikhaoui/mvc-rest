@@ -1,9 +1,8 @@
 package com.spring.api.demo.controller;
 
 
-import com.spring.api.demo.model.CustomerDto;
+import com.spring.api.demo.modelo.CustomerDto;
 import com.spring.api.demo.service.CustomerService;
-import com.spring.api.demo.service.RessourceNotFoundException;
 import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +31,10 @@ public class CustomerController {
     public CustomerDto getCustomerById(@PathVariable Long id) {
         CustomerDto customerDto = customerService.getCustomerById(id);
         if (customerDto == null) {
-            throw new RessourceNotFoundException("I can't found a Customer with the id " +
-                    id);
+            //throw new RessourceNotFoundException("I can't found a Customer with the id " +
+              //      id)
+            //     ;
+            return null;
         } else {
             return customerDto;
         }

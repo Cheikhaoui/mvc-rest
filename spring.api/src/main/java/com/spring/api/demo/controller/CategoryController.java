@@ -1,13 +1,11 @@
 package com.spring.api.demo.controller;
 
+import com.spring.api.demo.modele.Category;
 import com.spring.api.demo.service.CategoryService;
-import com.spring.api.demo.service.RessourceNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import rest.model.Category;
-
 import java.util.List;
 
 @Api(value = "this is Category WebService yeaaah")
@@ -34,8 +32,9 @@ public class CategoryController {
     public Category getCategoryByName(@PathVariable String name) {
         Category category = categoryService.getCAtegoryByName(name);
         if (category == null) {
-            throw new RessourceNotFoundException("I can't found a category with the name" +
-                    name);
+          //  throw new RessourceNotFoundException("I can't found a category with the name" +
+            //        name);
+            return null;
         } else {
             return categoryService.getCAtegoryByName(name);
         }
